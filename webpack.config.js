@@ -28,7 +28,7 @@ module.exports = {
           loader: 'url-loader',
           options: {
             name: '[name].[ext]',
-            limit: 10000000
+            limit: 10000
           }
         }]
       }
