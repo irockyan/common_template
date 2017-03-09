@@ -1,13 +1,14 @@
 /**
  * 获取格式话的时间
  * @param {*时间戳} timeStamp 
+ * @param {*连接符号} flag
  */
-export const getFormateDate = (timeStamp) => {
+export const getFormateDate = (timeStamp,flag) => {
     const date = new Date(timeStamp);
     let year = date.getFullYear(),
         month = date.getMonth() < 10 ? '0' + (date.getMonth() + 1)  : date.getMonth(),
         day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-    return year + '-' + month + '-' + day;
+    return year + ('年' || flag) + month + ('月' || flag) + day + ('日' || flag);
 }
 
 
