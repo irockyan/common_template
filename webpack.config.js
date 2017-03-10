@@ -44,5 +44,8 @@ module.exports = {
     }),
     new webpack.optimize.UglifyJsPlugin()
   ],
-  devtool: "cheap-eval-source-map"
+  devtool: "cheap-eval-source-map",
+  devServer: {
+    https: true
+  }
 }
