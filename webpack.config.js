@@ -3,11 +3,13 @@ const path = require('path'),
   HtmlWebpackPlugin = require('html-webpack-plugin'),
   webpack = require('webpack');
 module.exports = {
-  entry: path.resolve(__dirname, './src/js/index.js'),
+  context: __dirname + '/src',
+  entry: {
+    app: './js/index.js'
+  },
   output: {
-    filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
-    publicPath: '/'
+    filename: '[name].bundle.js'
   },
   module: {
     rules: [{
@@ -42,7 +44,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, './index.html')
     }),
-    new webpack.optimize.UglifyJsPlugin()
+    // new webpack.optimize.UglifyJsPlugin()
   ],
   devtool: "cheap-eval-source-map",
   devServer: {
