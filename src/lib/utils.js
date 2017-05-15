@@ -3,12 +3,12 @@
  * @param {*时间戳} timeStamp 
  * @param {*连接符号} flag
  */
-export const getFormateDate = (timeStamp, flag) => {
+const getFormateDate = (timeStamp, flag) => {
   const date = new Date(timeStamp);
   let year = date.getFullYear(),
     month = date.getMonth() < 10 ? '0' + (date.getMonth() + 1) : date.getMonth(),
     day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
-  return year + ('年' || flag) + month + ('月' || flag) + day + ('日' || flag);
+  return year + (flag || '年') + month + (flag || '月') + day + (flag ? '' : '日');
 }
 
 
@@ -17,7 +17,7 @@ export const getFormateDate = (timeStamp, flag) => {
  * @param {*起始数字} startNum 
  * @param {*结尾数字} endNum 
  */
-export const getRandom = (startNum, endNum) => {        
+const getRandom = (startNum, endNum) => {        
   var iChoice = endNum - startNum;        
   return Math.floor(Math.random() * iChoice + startNum);
 }
@@ -26,12 +26,39 @@ export const getRandom = (startNum, endNum) => {        
  * 重新设置根元素的大小
  * @param {*设计尺寸} designWidth 
  */
-export const resetRootFontSize = (designWidth) => {
+const resetRootFontSize = (designWidth) => {
   const setFontSize = () => {
     var html = document.documentElement,
-      viewWidth = html.clientWidth / designWidth / 100;
+      viewWidth = html.clientWidth / designWidth * 100;
     html.style.fontSize = viewWidth + 'px';
   }
   document.addEventListener('DOMContentLoaded', setFontSize, false);
   window.onresize = setFontSize;
+}
+
+/**
+ * 获取URL中元素的值
+ */
+const query = function (href, param) {
+  var reg = new RegExp('(^|&)' + param + '=([^&]*)(&|$)', 'i');
+  var r = href.split('?')[1].match(reg);
+  if (r != null) {
+    return unescape(r[2]);
+  }
+  return null;
+}
+
+/**
+ * 获取元素简写
+ */
+const $ = (ele) => {
+  return document.querySelector(ele);
+}
+
+export default {
+  query,
+  getFormateDate,
+  getRandom,
+  resetRootFontSize,
+  $
 }
