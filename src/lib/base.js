@@ -1,4 +1,4 @@
-import resetCss from '../lib/reset.css';
+import 'normalize.css';
 import '../lib/extend';
 
 const testUrl = '',
